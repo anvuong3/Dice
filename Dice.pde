@@ -16,8 +16,8 @@ void draw()
       dice.show();
     }
   }
-    textSize(15);
-  text("Sum of Dice: " + sum, 250, 50);
+        textSize(15);
+  text("Sum of Dice: " + sum, 150, 50);
 }
 void mousePressed()
 {
