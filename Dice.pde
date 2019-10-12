@@ -1,105 +1,112 @@
-Die dice;
 int sum = 0;
 
 void setup()
 {
-  size(500,500);
+  size(975,1015);
   noLoop();
 
 }
 void draw()
 {
-
-  for ( int x = 15; x < 450; x = x+60 ) {
-    for ( int y = 15; y < 450; y = y+60 ) {
-      Die dice = new Die(x, y);
-      dice.show();
+    background(0);
+  for ( int x = 15; x < 960; x = x+60 ) {
+    for ( int y = 50; y < 960; y = y+60 ) {
+      Die Eins = new Die(x, y);
+      Eins.show();
     }
   }
-        textSize(15);
-  text("Sum of Dice: " + sum, 150, 50);
+  fill(255);
+        textSize(40);
+        strokeWeight(2);
+
+  text("Sum of Dice: " + sum, 330, 40);
 }
+
 void mousePressed()
 {
+
   sum = 0;
   redraw();
-  background(192);
 }
-class Die //models one single dice cube
-{
-  //variable declarations here
-  int myx, myy;
-  int diceNumber;
-  int random;
-  Die(int x, int y) //constructor
-  {
-      //variable initializations here
-      myx = x;
-      myy = y;
-      roll();
 
+
+  class Die
+{
+  int rollNum;
+  int myX, myY;
+  Die(int X, int Y)
+  {
+    roll();
+    myX = X;
+    myY = Y;
   }
   void roll()
   {
-    //your code here
-    random = (int) random(1, 7);
-  
+    float r = random(6);
+
+    if ( r < 1 ) {
+      rollNum = 1;
+    } else if ( r < 2 ) {
+      rollNum = 2;
+    } else if ( r < 3 ) {
+      rollNum = 3;
+    } else if ( r < 4 ) {
+      rollNum = 4;
+    } else if ( r < 5 ) {
+      rollNum = 5;
+    } else if ( r < 6 ) {
+      rollNum = 6;
+    }
   }
   void show()
   {
-    //your code here
-      textSize(15);
-  text("Sum of Dice: " + sum, 250, 50);
-    background(255);
-
-
+    fill((float)random(0,255),(float)random(0,255),(float)random(0,255));
     strokeWeight(2);
-      fill(random(0,255),random(0,255),random(0,255));
-      rect(myx-35, myy-35, 70, 70, 10, 10, 10, 10);
+    stroke(255);
+    rect(myX, myY, 50, 50,10,10,10,10);
 
-      if(random == 1){
-                fill((float)Math.random()*256,(float)Math.random()*256,(float)Math.random()*256);
-        ellipse(myx, myy, 10, 10);
-        sum+= 1;
-      }else if(random == 2){
-                fill((float)Math.random()*256,(float)Math.random()*256,(float)Math.random()*256);
-        ellipse(myx-15,myy-15, 10, 10);
-        ellipse(myx+15, myy+15, 10, 10);
-                sum+= 2;
-      }else if(random == 3){
-                fill((float)Math.random()*256,(float)Math.random()*256,(float)Math.random()*256);
-  			ellipse(myx,myy, 10, 10);
-  			ellipse(myx - 20, myy - 20, 10, 10);
-  			ellipse(myx + 20, myy + 20, 10, 10);
-                sum+= 3;
-  		}else if(random == 4){
-                fill((float)Math.random()*256,(float)Math.random()*256,(float)Math.random()*256);
-        ellipse(myx-15,myy-15, 10, 10);
-        ellipse(myx+15,myy+15, 10, 10);
-        ellipse(myx-15,myy+15, 10, 10);
-        ellipse(myx+15,myy-15, 10, 10);
-                sum+= 4;
-
-  		}else if(random == 5){
-                        sum+= 5;
-        fill((float)Math.random()*256,(float)Math.random()*256,(float)Math.random()*256);
-  			ellipse(myx - 20, myy - 20, 10, 10);
-  			ellipse(myx + 20, myy + 20, 10, 10);
-  			ellipse(myx - 20, myy + 20, 10, 10);
-  			ellipse(myx + 20, myy - 20, 10, 10);
-  			ellipse(myx, myy, 10, 10);
-
-  		}else{
-                        sum+= 6;
-        fill((float)Math.random()*256,(float)Math.random()*256,(float)Math.random()*256);
-        ellipse(myx-15,myy-17, 10, 10);
-        ellipse(myx+15,myy+17, 10, 10);
-        ellipse(myx-15,myy+17, 10, 10);
-        ellipse(myx+15,myy-17, 10, 10);
-        ellipse(myx-15,myy, 10, 10);
-        ellipse(myx+15,myy, 10, 10);
-
-  		}
-	}
+    fill(0);
+    if ( rollNum == 1) {
+          fill((float)random(0,255),(float)random(0,255),(float)random(0,255));
+      ellipse(myX + 25, myY + 25, 5, 5);
+      sum+=1;
+    } else if ( rollNum == 2) {
+          fill((float)random(0,255),(float)random(0,255),(float)random(0,255));
+      ellipse(myX + 10, myY + 10, 5, 5);
+      ellipse(myX + 40, myY + 40, 5, 5);
+      sum+=2;
+    } else if ( rollNum == 3) {
+          fill((float)random(0,255),(float)random(0,255),(float)random(0,255));
+      ellipse(myX + 10, myY + 10, 5, 5);
+      ellipse(myX + 25, myY + 25, 5, 5);
+      ellipse(myX + 40, myY + 40, 5, 5);
+      sum+=3;
+    } else if ( rollNum == 4) {
+          fill((float)random(0,255),(float)random(0,255),(float)random(0,255));
+      ellipse(myX + 10, myY + 10, 5, 5);
+      ellipse(myX + 40, myY + 10, 5, 5);
+      ellipse(myX + 10, myY + 40, 5, 5);
+      ellipse(myX + 40, myY + 40, 5, 5);
+      sum+=4;
+    } else if ( rollNum == 5) {
+          fill((float)random(0,255),(float)random(0,255),(float)random(0,255));
+      ellipse(myX + 10, myY + 10, 5, 5);
+      ellipse(myX + 40, myY + 10, 5, 5);
+      ellipse(myX + 10, myY + 40, 5, 5);
+      ellipse(myX + 40, myY + 40, 5, 5);
+      ellipse(myX + 25, myY + 25, 5, 5);
+      sum+=5;
+    } else if (rollNum == 6) {
+          fill((float)random(0,255),(float)random(0,255),(float)random(0,255));
+      ellipse(myX + 15, myY + 12, 5, 5);
+      ellipse(myX + 15, myY + 25, 5, 5);
+      ellipse(myX + 15, myY + 37, 5, 5);
+      ellipse(myX + 38, myY + 12, 5, 5);
+      ellipse(myX + 38, myY + 25, 5, 5);
+      ellipse(myX + 38, myY + 37, 5, 5);
+      sum+=6;
+    }
+  }
 }
+
 	
